@@ -18,9 +18,9 @@ def add_catch_copy(image_path, catch_copy, loc_catch_copy):
 
 def find_loc_catch_copy(loc_catch_copy):
     locs_str = ["Top_Left", "Top", "Top_Right", "Center_Left", "Center", "Center_Right", "Bottom_Left", "Bottom", "Bottom_Right"]
-    locs = [(10,10),(95,10),(180,10),
-            (10,95),(95,95),(180,95),
-            (10,180),(95,180),(180,180) ]
+    locs = [(10,10),(140,10),(275,10),
+            (10,140),(140,140),(275,140),
+            (10,275),(140,275),(275,275) ]
     for i in range(len(locs_str)):
         if loc_catch_copy == locs_str[i]:
             loc = locs[i]
