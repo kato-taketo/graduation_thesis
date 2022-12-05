@@ -15,6 +15,7 @@ from contextlib import contextmanager, nullcontext
 from ldm.util import instantiate_from_config
 from optimUtils import split_weighted_subprompts, logger
 from transformers import logging
+from add_catch_copy import add_catch_copy
 # from samplers import CompVisDenoiser
 logging.set_verbosity_error()
 
@@ -40,6 +41,9 @@ parser = argparse.ArgumentParser()
 
 parser.add_argument(
     "--prompt", type=str, nargs="?", default="a painting of a virus monster playing guitar", help="the prompt to render"
+)
+parser.add_argument(
+    "--catch_copy", type=str, help="catch copy of output ad image", default="catch copy"
 )
 parser.add_argument("--outdir", type=str, nargs="?", help="dir to write results to", default="outputs/txt2img-samples")
 parser.add_argument(
@@ -321,6 +325,8 @@ with torch.no_grad():
                     Image.fromarray(x_sample.astype(np.uint8)).save(
                         os.path.join(sample_path, "seed_" + str(opt.seed) + "_" + f"{base_count:05}.{opt.format}")
                     )
+                    image_path = os.path.join(sample_path, "seed_" + str(opt.seed) + "_" + f"{base_count:05}.{opt.format}")
+                    add_catch_copy(image_path, opt.catch_copy)
                     seeds += str(opt.seed) + ","
                     opt.seed += 1
                     base_count += 1
