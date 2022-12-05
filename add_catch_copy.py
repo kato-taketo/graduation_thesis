@@ -1,11 +1,11 @@
 from PIL import Image,ImageFont,ImageDraw
 import os
 
-def add_catch_copy(image_path, catch_copy, loc_catch_copy):
+def add_catch_copy(image_path, catch_copy, loc_catch_copy, font_catch_copy):
     '''
     Use the image path and catchphrase string as input to draw catchphrase on the image
     '''
-    font_path = '/usr/share/fonts/truetype/Gargi/Gargi.ttf'
+    font_path = find_font(font_catch_copy)
     font_size = 30 #文字の大きさ
     color = (255,255,255)#文字の色
     
@@ -27,5 +27,11 @@ def find_loc_catch_copy(loc_catch_copy):
 
     return loc
 
+def find_font(font_catch_copy):
+    font_names = ['Gargi', 'Noto']
+    font_paths = ['/usr/share/fonts/truetype/Gargi/Gargi.ttf', '/usr/share/fonts/truetype/noto/NotoColorEmoji.ttf ']
+    for i in range(len(font_names)):
+        if font_catch_copy == font_names[i]:
+            font = font_paths[i]
 
- 
+    return font

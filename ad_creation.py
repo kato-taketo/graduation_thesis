@@ -48,6 +48,10 @@ parser.add_argument(
 parser.add_argument(
     "--loc_catch_copy", choices=['Top_Left', 'Top', 'Top_Right', 'Center_Left', 'Center', 'Center_Right', 'Bottom_Left', 'Bottom', 'Bottom_Right'], default='Top_left'
 )
+parser.add_argument(
+    "--font_catch_copy", choices=['Gargi', 'Noto'], default='Gargi'
+    # Noto can't use now
+)
 parser.add_argument("--outdir", type=str, nargs="?", help="dir to write results to", default="outputs/txt2img-samples")
 parser.add_argument(
     "--skip_grid",
@@ -329,7 +333,7 @@ with torch.no_grad():
                         os.path.join(sample_path, "seed_" + str(opt.seed) + "_" + f"{base_count:05}.{opt.format}")
                     )
                     image_path = os.path.join(sample_path, "seed_" + str(opt.seed) + "_" + f"{base_count:05}.{opt.format}")
-                    add_catch_copy(image_path, opt.catch_copy, opt.loc_catch_copy)
+                    add_catch_copy(image_path, opt.catch_copy, opt.loc_catch_copy, opt.font_catch_copy)
                     seeds += str(opt.seed) + ","
                     opt.seed += 1
                     base_count += 1
