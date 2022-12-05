@@ -4,7 +4,7 @@ import numpy as np
 import cv2
 import imgproc
 
-from find_big_bbox import find_big_bbox
+from function import find_big_bbox, add_catch_copy, find_font_size
 
 # borrowed from https://github.com/lengstrom/fast-style-transfer/blob/master/src/utils.py
 def get_files(img_dir):
@@ -55,6 +55,7 @@ def saveResult(img_file, img, boxes, dirname='./result/', verticals=None, texts=
             os.mkdir(dirname)
 
         index,width,height = -1,-1,-1
+        loc = (0,0)
         with open(res_file, 'w') as f:
             for i, box in enumerate(boxes):
                 poly = np.array(box).astype(np.int32).reshape((-1))
@@ -64,7 +65,7 @@ def saveResult(img_file, img, boxes, dirname='./result/', verticals=None, texts=
                 poly = poly.reshape(-1, 2)
                 # cv2.polylines(img, [poly.reshape((-1, 1, 2))], True, color=(0, 0, 255), thickness=2)  # this is original
                 cv2.fillPoly(img, [poly.reshape((-1,1,2))], (255,255,255))
-                index,width,height=find_big_bbox(i,poly,index,width,height)
+                index,width,height,loc=find_big_bbox(i,poly,index,width,height,loc)
 
                 ptColor = (0, 255, 255)
                 if verticals is not None:
@@ -77,12 +78,12 @@ def saveResult(img_file, img, boxes, dirname='./result/', verticals=None, texts=
                     cv2.putText(img, "{}".format(texts[i]), (poly[0][0]+1, poly[0][1]+1), font, font_scale, (0, 0, 0), thickness=1)
                     cv2.putText(img, "{}".format(texts[i]), tuple(poly[0]), font, font_scale, (0, 255, 255), thickness=1)
 
-        with open(res_file, 'w') as f:
-            for i, box in enumerate(boxes):
-                if i == index:
-                    # add catch copy
-                    print()
+        cv2.imwrite(res_img_file, img)
+
+        catch_copy = "catch copy"
+        font_size = find_font_size(catch_copy, width,height)
+        add_catch_copy(res_img_file, catch_copy, loc, font_size)
             
         # Save result image
-        cv2.imwrite(res_img_file, img)
+        #cv2.imwrite(res_img_file, img)
 
