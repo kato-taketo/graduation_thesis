@@ -3,7 +3,7 @@
 ## first step
 
 with reference to [web site](https://touch-sp.hatenablog.com/entry/2022/10/11/145610)
-```python
+```bash
 # Virtual environment construction
 python -m venv ~/venv/stable-diffusion
 source ~/venv/stable-diffusion/bin/activate
@@ -18,8 +18,9 @@ cd stable-diffusion
 mkdir -p models/ldm/stable-diffusion-v1/
 cd optimizedSD
 ```
-# download sd-v1-d.ckpt
+### download sd-v1-d.ckpt
 install [here](https://huggingface.co/CompVis/stable-diffusion-v-1-4-original)
+
 Move to 'models/ldm/stable-diffusion-v1/'
 
 ## operation check
