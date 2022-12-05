@@ -17,8 +17,15 @@ git clone https://github.com/basujindal/stable-diffusion.git
 cd stable-diffusion
 mkdir -p models/ldm/stable-diffusion-v1/
 cd optimizedSD
-
+```
 # download sd-v1-d.ckpt
-https://huggingface.co/CompVis/stable-diffusion-v-1-4-original
+install [here](https://huggingface.co/CompVis/stable-diffusion-v-1-4-original)
 Move to 'models/ldm/stable-diffusion-v1/'
+
+## operation check
+
+Change DEFAULT_CKPT in optimized_text2img.py from "models/ldm/stable-diffusion-v1/model.ckpt" to "models/ldm/stable-diffusion-v1/sd-v1-4.ckpt"
+```python
+cd ~/デスクトップ/stable-diffusion/
+python optimizedSD/optimized_txt2img.py --prompt "a photograph of an astronaut riding a horse"
 ```
