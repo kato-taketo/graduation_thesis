@@ -30,3 +30,13 @@ Change DEFAULT_CKPT in optimized_text2img.py from "models/ldm/stable-diffusion-v
 cd ~/デスクトップ/stable-diffusion/
 python optimizedSD/optimized_txt2img.py --prompt "a photograph of an astronaut riding a horse"
 ```
+
+## How to use
+
+```bash
+cd ~/デスクトップ/stable-diffusion/
+python optimizedSD/ad_creation.py \
+    --prompt "100 yen coin in the center, delicious donuts around, overall black background, leaflet advertisement" \
+    --catch_copy "40周年ありがとう。ドーナツ100円セール" \
+    --loc_catch_copy "Bottom_Right"
+```
