@@ -1,6 +1,6 @@
 # graduation_thesis
 
-## first step
+## environment construction
 
 with reference to [web site](https://touch-sp.hatenablog.com/entry/2022/10/11/145610)
 ```bash
