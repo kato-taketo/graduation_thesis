@@ -25,7 +25,7 @@ def find_big_bbox(i,poly,big_bbox_index,width,height,loc):
         width = p_width
         height = p_height
         big_bbox_index = i
-        loc = (x_max, y_ave/len(poly))
+        loc = (x_min, y_ave/len(poly))
 
     return big_bbox_index, width ,height,loc
 
@@ -36,7 +36,7 @@ def add_catch_copy(image_path, catch_copy, loc, font_size):
 
     font_path = '/usr/share/fonts/truetype/Gargi/Gargi.ttf'
     #font_size = 30
-    color = (255,255,255)
+    color = (0,0,0)
 
     font = ImageFont.truetype(font_path, font_size)
     image = Image.open(image_path)
