@@ -25,7 +25,9 @@ def find_big_bbox(i,poly,big_bbox_index,width,height,loc):
         width = p_width
         height = p_height
         big_bbox_index = i
-        loc = (x_min, y_ave/len(poly))
+        #loc = (x_min, y_ave/len(poly))
+        #loc = (x_min, (y_max-y_min)/2)
+        loc = (x_min, y_min)
 
     return big_bbox_index, width ,height,loc
 
@@ -46,7 +48,7 @@ def add_catch_copy(image_path, catch_copy, loc, font_size):
 
 def find_font_size(catch_copy, width ,height):
     length = len(catch_copy)
-    font_size = min(height, width/length)
+    font_size = min(height, width/length*2)
 
     return int(font_size)
     
